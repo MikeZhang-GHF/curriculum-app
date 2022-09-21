@@ -19,5 +19,21 @@ pipeline {
       }
     }
 
+    stage('Log into Dockerhub') {
+      environment {
+        DOCKERHUB_USER = 'A'
+        DOCKERHUB_PASSWORD = 'B'
+      }
+      steps {
+        sh 'docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD'
+      }
+    }
+
+    stage('Push') {
+      steps {
+        sh 'docker push '
+      }
+    }
+
   }
 }
